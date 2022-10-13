@@ -8,6 +8,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MailIcon from '@mui/icons-material/Mail';
 import PersonIcon from '@mui/icons-material/Person';
 import Button from '@mui/material/Button';
+import {Link} from "react-router-dom";
 
 function Sidebar()
 {
@@ -15,11 +16,19 @@ function Sidebar()
         <div className="sidebar">
             {/* Twitter Icon */}
             <TwitterIcon className="sidebar__twitterIcon" />
-            {/* Sidebar Page Options */}
-            <SidebarOption Icon={HomeIcon} text="Home" active={true} />
-            <SidebarOption Icon={SearchIcon} text="Explore" />
+            {/* Home Page */}
+            <Link to="/" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                <SidebarOption Icon={HomeIcon} text="Home" path="/"> </SidebarOption> 
+            </Link>
+            {/* Explore Page */}
+            <Link to="/explore" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                <SidebarOption Icon={SearchIcon} text="Explore" path="/explore"> </SidebarOption> 
+            </Link>
+            {/* Notifications Page */}
             <SidebarOption Icon={NotificationsIcon} text="Notifications" />
+            {/* Messages Page */}
             <SidebarOption Icon={MailIcon} text="Messages" />
+            {/* Profile Page */}
             <SidebarOption Icon={PersonIcon} text="Profile" />
             {/* Sidebar Tweet Button */}
             <Button variant="outlined" className="sidebar__tweetButton" fullWidth>Tweet</Button>
