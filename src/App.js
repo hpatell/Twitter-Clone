@@ -1,25 +1,37 @@
 import React from "react";
-import Sidebar from './Sidebar'
 import './App.css';
+import Signup from "./Signup";
+import Login from "./Login";
 import HomePage from "./HomePage";
 import ExplorePage from "./ExplorePage";
+import ProfilePage from "./ProfilePage";
+import ForgotPassword from "./ForgotPassword";
+import UpdateProfile from "./UpdateProfile";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   return (
-    <Router>
-      <div className="app">
-        <Sidebar />
-        <Routes>
-          <Route exact path="/" element={<HomePage />}/>
-          <Route exact path="/explore" element={<ExplorePage />}/>
-        </Routes>
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <div className="app">
+          <Routes>
+            <Route exact path="/" element={<ProtectedRoute><HomePage /></ProtectedRoute>}/>
+            <Route path="/explore" element={<ProtectedRoute><ExplorePage /></ProtectedRoute>}/>
+            <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>}/>
+            <Route path="/update-profile" element={<ProtectedRoute><UpdateProfile /></ProtectedRoute>}/>
+            <Route path="/signup" element={<Signup />}/>
+            <Route path="/login" element={<Login />}/>
+            <Route path="/forgot-password" element={<ForgotPassword />}/>
+          </Routes>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 

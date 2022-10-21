@@ -1,8 +1,10 @@
 import React from "react";
+import Sidebar from "./Sidebar";
 
 function HomePage() {
     return (
-        <h1>Home Page</h1>
+        <><Sidebar />
+        <h1>Home Page</h1></>
 
     );
 }

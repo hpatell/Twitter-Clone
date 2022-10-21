@@ -1,8 +1,10 @@
 import React from "react";
+import Sidebar from "./Sidebar";
 
 function ExplorePage() {
     return (
-        <h1>Explore Page</h1>
+        <><Sidebar />
+        <h1>Explore Page</h1></>
 
     );
 }

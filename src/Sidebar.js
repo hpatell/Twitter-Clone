@@ -29,7 +29,9 @@ function Sidebar()
             {/* Messages Page */}
             <SidebarOption Icon={MailIcon} text="Messages" />
             {/* Profile Page */}
-            <SidebarOption Icon={PersonIcon} text="Profile" />
+            <Link to="/profile" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                <SidebarOption Icon={PersonIcon} text="Profile" path="/profile"> </SidebarOption> 
+            </Link>
             {/* Sidebar Tweet Button */}
             <Button variant="outlined" className="sidebar__tweetButton" fullWidth>Tweet</Button>
         </div>
