@@ -17,21 +17,21 @@ import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <div className="app">
-          <Routes>
-            <Route exact path="/" element={<ProtectedRoute><HomePage /></ProtectedRoute>}/>
-            <Route path="/explore" element={<ProtectedRoute><ExplorePage /></ProtectedRoute>}/>
-            <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>}/>
-            <Route path="/update-profile" element={<ProtectedRoute><UpdateProfile /></ProtectedRoute>}/>
-            <Route path="/signup" element={<Signup />}/>
-            <Route path="/login" element={<Login />}/>
-            <Route path="/forgot-password" element={<ForgotPassword />}/>
-          </Routes>
-        </div>
-      </Router>
-    </AuthProvider>
+    <div className="app">
+      <AuthProvider>
+        <Router>
+            <Routes>
+              <Route exact path="/" element={<ProtectedRoute><HomePage /></ProtectedRoute>}/>
+              <Route path="/explore" element={<ProtectedRoute><ExplorePage /></ProtectedRoute>}/>
+              <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>}/>
+              <Route path="/update-profile" element={<ProtectedRoute><UpdateProfile /></ProtectedRoute>}/>
+              <Route path="/signup" element={<Signup />}/>
+              <Route path="/login" element={<Login />}/>
+              <Route path="/forgot-password" element={<ForgotPassword />}/>
+            </Routes>
+        </Router>
+      </AuthProvider>
+    </div>
   );
 }
 

@@ -1,11 +1,15 @@
 import React from "react";
 import Sidebar from "./Sidebar";
+import Feed from "./Feed";
+import Widgets from "./Widgets";
 
 function HomePage() {
     return (
-        <><Sidebar />
-        <h1>Home Page</h1></>
-
+        <>
+        <Sidebar />
+        <Feed />
+        <Widgets /> 
+        </>
     );
 }
 
