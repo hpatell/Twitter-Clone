@@ -5,11 +5,13 @@ import "./TweetBox.css";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import {GetUser} from "./firebase.js"
+import { useAuth } from './context/AuthContext';
 
 function TweetBox() {
   const [tweetMessage, setTweetMessage] = useState("");
   const [tweetImage, setTweetImage] = useState("");
   const [tweetNumber, setTweetNumber] = useState(Math.random().toString(16).substr(2, 8));
+  const { currentUser } = useAuth();
 
   let user = GetUser();
 
@@ -25,7 +27,8 @@ function TweetBox() {
       text: tweetMessage,
       image: tweetImage,
       timestamp: serverTimestamp(),
-      postId: tweetNumber
+      postId: tweetNumber,
+      email: currentUser.email
     });
     console.log("Document written with ID: ", docRef.id);
 
