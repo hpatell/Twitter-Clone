@@ -12,7 +12,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Alert } from '@mui/material';
 import { useAuth } from './context/AuthContext';
-
+import db from "./firebase.js";
+import { collection, addDoc } from "firebase/firestore";
 const theme = createTheme();
 
 export default function Signup() {
@@ -28,6 +29,18 @@ export default function Signup() {
         setError("");
         setLoading(true);
         await signup(data.get('email'), data.get('password'));
+
+        // add user to database 
+        const docRef = await addDoc(collection(db, "users"), {
+          username: data.get('username'),
+          firstName: data.get('firstName'),
+          lastName: data.get('lastName'),
+          email: data.get('email'),
+          avatar: "",
+          verified: true
+        });
+        console.log("User ID: ", docRef.id);
+
         navigate("/");
     } catch (error) {
         setError(error.message);
@@ -58,13 +71,13 @@ export default function Signup() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="given-name"
-                  name="firstName"
+                  autoFocus
                   required
                   fullWidth
                   id="firstName"
                   label="First Name"
-                  autoFocus
+                  name="firstName"
+                  autoComplete="given-name"
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -102,10 +115,10 @@ export default function Signup() {
                 <TextField
                   required
                   fullWidth
-                  id="userName"
+                  id="username"
                   label="Username"
-                  name="userName"
-                  autoComplete="userName"
+                  name="username"
+                  autoComplete="username"
                 />
               </Grid>
             </Grid>

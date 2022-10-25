@@ -4,27 +4,34 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import "./TweetBox.css";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
+import {GetUser} from "./firebase.js"
 
 function TweetBox() {
   const [tweetMessage, setTweetMessage] = useState("");
   const [tweetImage, setTweetImage] = useState("");
+  const [tweetNumber, setTweetNumber] = useState(Math.random().toString(16).substr(2, 8));
+
+  let user = GetUser();
 
   const sendTweet = async (e) => {
     e.preventDefault();
 
+    // add tweet to database
     const docRef = await addDoc(collection(db, "posts"), {
-      username: "hpatel_30",
-      displayName: "Himanshu Patel",
-      avatar: "",
-      verified: true,
+      username: user[0],
+      displayName: user[1] + " " + user[2],
+      avatar: user[3],
+      verified: user[4],
       text: tweetMessage,
       image: tweetImage,
-      timestamp: serverTimestamp()
+      timestamp: serverTimestamp(),
+      postId: tweetNumber
     });
     console.log("Document written with ID: ", docRef.id);
 
     setTweetMessage("");
     setTweetImage("");
+    setTweetNumber(Math.random().toString(16).substr(2, 8));
   };
 
   return (

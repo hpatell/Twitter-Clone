@@ -1,10 +1,5 @@
 import { Search } from "@mui/icons-material";
 import React from "react";
-// import {
-//   TwitterTimelineEmbed,
-//   TwitterShareButton,
-//   TwitterTweetEmbed,
-// } from "react-twitter-embed";
 import "./Widgets.css";
 
 function Widgets() {
@@ -16,17 +11,10 @@ function Widgets() {
       </div>
 
       <div className="widgets__widgetContainer">
-        <h2>What's happening</h2>
-        {/* <TwitterTweetEmbed tweetId={"1307046632517664771"} />
-        <TwitterTimelineEmbed
-          sourceType="profile"
-          screenName="atharvabrand"
-          options={{ height: 400 }}
-        />
-        <TwitterShareButton
-          url={"https://atharvadeosthale.com"}
-          options={{ text: "React Developer" }}
-        /> */}
+        <h2>Who to follow</h2>
+        {
+          
+        }
       </div>
     </div>
   );
