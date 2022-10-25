@@ -13,6 +13,8 @@ import { Alert } from '@mui/material';
 import { Stack } from '@mui/system';
 import { useAuth } from './context/AuthContext';
 import { EmailAuthProvider } from 'firebase/auth';
+import db from "./firebase.js";
+import { doc, updateDoc, collection, query, where, getDocs } from "firebase/firestore";
 const theme = createTheme();
 
 export default function UpdateProfile() {
@@ -36,6 +38,16 @@ export default function UpdateProfile() {
         {
             if (data.get('email') !== currentUser.email && data.get('email')) {
                 try {
+                    // update email in firestore database
+                    const q = query(collection(db, "users"), where("email", "==", currentUser.email));
+                    const querySnapshot = await getDocs(q);
+                    querySnapshot.forEach((document) => {
+                      const userRef = doc(db, "users", document.id);
+                      updateDoc(userRef, {
+                        email: data.get('email')
+                      });
+                    });
+                    // update email in firebase auth
                     await updateUserEmail(data.get('email'));
                     setMessage("Success: Email Updated");
                 } catch (error) {

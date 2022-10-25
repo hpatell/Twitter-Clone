@@ -4,6 +4,7 @@ import Signup from "./Signup";
 import Login from "./Login";
 import HomePage from "./HomePage";
 import ExplorePage from "./ExplorePage";
+import MessagesPage from "./MessagesPage";
 import ProfilePage from "./ProfilePage";
 import ForgotPassword from "./ForgotPassword";
 import UpdateProfile from "./UpdateProfile";
@@ -23,6 +24,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={<ProtectedRoute><HomePage /></ProtectedRoute>}/>
               <Route path="/explore" element={<ProtectedRoute><ExplorePage /></ProtectedRoute>}/>
+              <Route path="/messages" element={<ProtectedRoute><MessagesPage /></ProtectedRoute>}/>
               <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>}/>
               <Route path="/update-profile" element={<ProtectedRoute><UpdateProfile /></ProtectedRoute>}/>
               <Route path="/signup" element={<Signup />}/>

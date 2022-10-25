@@ -31,7 +31,7 @@ export default function Signup() {
         await signup(data.get('email'), data.get('password'));
 
         // add user to database 
-        const docRef = await addDoc(collection(db, "users"), {
+        await addDoc(collection(db, "users"), {
           username: data.get('username'),
           firstName: data.get('firstName'),
           lastName: data.get('lastName'),
@@ -39,7 +39,7 @@ export default function Signup() {
           avatar: "",
           verified: true
         });
-        console.log("User ID: ", docRef.id);
+        //console.log("User ID: ", docRef.id);
 
         navigate("/");
     } catch (error) {
